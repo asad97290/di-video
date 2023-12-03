@@ -47,13 +47,12 @@ function Main() {
           url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
           data: formData,
           headers: {
-            pinata_api_key: `${"656d2c72f58294627b7e"}`,
-            pinata_secret_api_key: `${"49be5dc16fe684dbf03b979487418525e5294e8b6e7b6f080a7c695ad3c2d6ca"}`,
+            pinata_api_key: process.env.pinata_api_key,
+            pinata_secret_api_key: process.env.pinata_secret_api_key,
             "Content-Type": "multipart/form-data",
           },
         });
 
-        const ImgHash = `https://indigo-select-tyrannosaurus-315.mypinata.cloud/ipfs/${resFile.data.IpfsHash}`;
         console.log(resFile.data.IpfsHash, " ", title);
 
         await dvideo.methods
@@ -179,7 +178,7 @@ function Main() {
                       className=""
                     >
                       <source
-                        src={`https://indigo-select-tyrannosaurus-315.mypinata.cloud/ipfs/${video.hash}`}
+                        src={`${process.env.ipfs_url}/ipfs/${video.hash}`}
                         type="video/mp4"
                       />
                     </video>
